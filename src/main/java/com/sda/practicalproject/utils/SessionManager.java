@@ -9,7 +9,7 @@ public class SessionManager extends AbstractSessionManager {
 
     private SessionManager(){
     }
-    public static SessionFactory getSesstionFactory(){
+    public static SessionFactory getSessionFactory(){
         return INSTANCE.getSessionFactory("pet_clinic");
     }
     public static void shutDown(){
