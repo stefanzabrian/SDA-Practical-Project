@@ -11,7 +11,7 @@ DONE PCM-4   - IMPLEMENT MENU
 
    //////////////////////////////////////////////////////////////////////////////
 
-PCM-5   - IMPLEMENT VET CREATION
+DONE PCM-5   - IMPLEMENT VET CREATION
     As a user I should be able to add a new vet with the following details: firstname, lastname, address, speciality. If the creation process is successful
    the system will allocate a unique id to the new vet.
        The system will validate the following data:
