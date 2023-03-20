@@ -35,4 +35,11 @@ public class VetController {
             e.printStackTrace();
         }
     }
+
+    public void displayAllVets() {
+        vetService.getAllVets().stream()
+                .forEach(vet -> System.out.println(vet.getId() + " " +
+                                vet.getFirstName() + " " +
+                                vet.getLastName()));
+    }
 }

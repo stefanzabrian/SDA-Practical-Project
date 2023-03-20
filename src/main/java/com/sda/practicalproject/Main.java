@@ -50,7 +50,7 @@ public class Main {
                     System.out.println("Delete vet not implemented");
                     break;
                 case VIEW_VET_LIST:
-                    System.out.println("Vet list not implemented");
+                    vetController.displayAllVets();
                     break;
                 case EXIT:
                     System.out.println("Good bye!");

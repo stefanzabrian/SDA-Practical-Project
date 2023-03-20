@@ -4,6 +4,8 @@ import com.sda.practicalproject.model.Vet;
 import com.sda.practicalproject.repository.VetRepository;
 import com.sda.practicalproject.repository.exception.EntityUpdateFailedException;
 
+import java.util.List;
+
 public class VetServiceImpl implements VetService {
     private final VetRepository vetRepository;
 
@@ -31,5 +33,10 @@ public class VetServiceImpl implements VetService {
         }
         Vet vet = new Vet(firstName, lastName, address, speciality);
         vetRepository.save(vet);
+    }
+
+    @Override
+    public List<Vet> getAllVets() {
+        return vetRepository.findAll();
     }
 }
