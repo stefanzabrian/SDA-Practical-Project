@@ -45,14 +45,15 @@ public class Main {
                     break;
                 case UPDATE_VET:
                     vetController.updateVet();
-                        // do nothing
-
                     break;
                 case DELETE_VET:
                     System.out.println("Delete vet not implemented");
                     break;
                 case VIEW_VET_LIST:
                     vetController.displayAllVets();
+                    break;
+                case VIEW_VET_BY_ID:
+                    vetController.findVetById();
                     break;
                 case EXIT:
                     System.out.println("Good bye!");
