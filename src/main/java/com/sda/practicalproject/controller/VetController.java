@@ -2,6 +2,7 @@ package com.sda.practicalproject.controller;
 
 import com.sda.practicalproject.repository.exception.EntityUpdateFailedException;
 import com.sda.practicalproject.service.VetService;
+import com.sda.practicalproject.service.exception.EntityNotFoundException;
 
 import java.util.Scanner;
 
@@ -41,5 +42,34 @@ public class VetController {
                 .forEach(vet -> System.out.println(vet.getId() + " " +
                                 vet.getFirstName() + " " +
                                 vet.getLastName()));
+    }
+
+    public void updateVet(){
+        try {
+            System.out.println("Please insert Vet's Id");
+            long id = Long.parseLong(scanner.nextLine());
+            System.out.println("Please insert Vet's Last Name");
+            String lastName = scanner.nextLine();
+            System.out.println("Please insert Vet's Address");
+            String address = scanner.nextLine();
+            System.out.println("Please insert Vet's Speciality");
+            String speciality = scanner.nextLine();
+
+            vetService.updateVet(id, lastName, address, speciality);
+            System.out.println("Vet has been updated");
+
+        } catch (NumberFormatException e){
+            System.err.println("Please insert valid numeric id");
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        } catch (EntityUpdateFailedException e) {
+            System.err.println(e.getMessage());
+            System.out.println("Please retry!");
+        }catch (EntityNotFoundException e){
+            System.err.println(e.getMessage());
+        } catch (Exception e){
+        System.err.println("Internal Server Error");
+        }
+
     }
 }

@@ -20,8 +20,8 @@ public class Vet {
     @Column(name = "speciality")
     private String speciality;
 
-    /*@OneToMany(mappedBy = "vet")
-    private List<Consult> consults;*/
+    @OneToMany(mappedBy = "vet")
+    private List<Consult> consults;
 
     public Vet() {
     }
