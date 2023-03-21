@@ -8,6 +8,7 @@ import com.sda.practicalproject.service.PetService;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 public class PetServiceImpl implements PetService {
     private final PetRepository petRepository;
@@ -32,5 +33,10 @@ public class PetServiceImpl implements PetService {
         }
         Pet pet = new Pet(race,dateOfBirth,isVaccinated,ownerName);
         petRepository.save(pet);
+    }
+
+    @Override
+    public List<Pet> getAllPets() {
+        return petRepository.findAll();
     }
 }

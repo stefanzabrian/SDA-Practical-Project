@@ -46,4 +46,10 @@ public class PetController {
             e.printStackTrace();
         }
     }
+    public void viewAllPets(){
+        petService.getAllPets().stream()
+                .forEach(pet -> System.out.println(pet.getId() + " " +
+                        pet.getRace() + " " +
+                        pet.getOwnerName()));
+    }
 }
