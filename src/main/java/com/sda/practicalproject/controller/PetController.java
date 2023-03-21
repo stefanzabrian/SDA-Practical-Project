@@ -4,6 +4,7 @@ import com.sda.practicalproject.model.Pet;
 import com.sda.practicalproject.model.Vet;
 import com.sda.practicalproject.repository.exception.EntityUpdateFailedException;
 import com.sda.practicalproject.service.PetService;
+import com.sda.practicalproject.service.exception.EntityNotFoundException;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -69,6 +70,22 @@ public class PetController {
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         } catch (Exception e) {
+            System.err.println("Internal Server Error");
+        }
+    }
+    public void deletePetById(){
+        try {
+            System.out.println("Please insert Pet's Id");
+            long id = Long.parseLong(scanner.nextLine());
+            petService.deletePetById(id);
+            System.out.println("Pet was successfully deleted");
+        } catch (NumberFormatException e) {
+            System.err.println("Please insert valid numeric id");
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            System.err.println(e.getMessage());
+        } catch(Exception e){
             System.err.println("Internal Server Error");
         }
     }
