@@ -1,6 +1,5 @@
 package com.sda.practicalproject.repository.base;
 
-import com.sda.practicalproject.repository.base.Repository;
 import com.sda.practicalproject.repository.exception.EntityUpdateFailedException;
 import com.sda.practicalproject.utils.SessionManager;
 import org.hibernate.Session;

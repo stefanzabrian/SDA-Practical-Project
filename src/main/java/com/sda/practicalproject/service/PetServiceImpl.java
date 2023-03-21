@@ -43,6 +43,25 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    public void updatePet(long id, boolean isVaccinated, String ownerName) throws EntityUpdateFailedException, EntityNotFoundException {
+        if (id <= 0 ){
+            throw new IllegalArgumentException("Please insert a correct id, must be bigger than zero");
+        }
+        if (ownerName == null || ownerName.isEmpty() || ownerName.isBlank()){
+            throw new IllegalArgumentException("Please enter a valid owner name");
+        }
+        Optional<Pet> optionalPet = petRepository.findById(id);
+        if(optionalPet.isPresent()){
+            Pet pet = optionalPet.get();
+            pet.setVaccinated(isVaccinated);
+            pet.setOwnerName(ownerName);
+            petRepository.update(pet);
+        } else {
+            throw new EntityNotFoundException("Pet id was not found " + id);
+        }
+    }
+
+    @Override
     public Optional<Pet> getPetById(long id) {
         if (id <= 0 ){
             throw new IllegalArgumentException("Please insert a correct id, must be bigger than zero");

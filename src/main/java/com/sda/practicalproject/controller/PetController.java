@@ -24,7 +24,7 @@ public class PetController {
         this.petService = petService;
     }
 
-    public void createPet(){
+    public void createPet() {
         try {
             System.out.println("Please insert Pet's race");
             String race = scanner.nextLine().trim();
@@ -42,20 +42,22 @@ public class PetController {
         } catch (EntityUpdateFailedException e) {
             System.err.println(e.getMessage());
             System.out.println("Please retry!");
-        }catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             System.out.println("Please insert date format YYYY-MM-DD");
         } catch (Exception e) {
             System.err.println("Internal server error");
             e.printStackTrace();
         }
     }
-    public void viewAllPets(){
+
+    public void viewAllPets() {
         petService.getAllPets().stream()
                 .forEach(pet -> System.out.println(pet.getId() + " " +
                         pet.getRace() + " " +
                         pet.getOwnerName()));
     }
-    public void viewPetById(){
+
+    public void viewPetById() {
         try {
             System.out.println("Please insert Pet's Id");
             long id = Long.parseLong(scanner.nextLine());
@@ -73,7 +75,8 @@ public class PetController {
             System.err.println("Internal Server Error");
         }
     }
-    public void deletePetById(){
+
+    public void deletePetById() {
         try {
             System.out.println("Please insert Pet's Id");
             long id = Long.parseLong(scanner.nextLine());
@@ -85,8 +88,31 @@ public class PetController {
             System.err.println(e.getMessage());
         } catch (EntityNotFoundException e) {
             System.err.println(e.getMessage());
-        } catch(Exception e){
+        } catch (Exception e) {
             System.err.println("Internal Server Error");
+        }
+    }
+
+    public void updatePet() {
+        try {
+            System.out.println("Please insert Pet's id");
+            long id = Long.parseLong(scanner.nextLine());
+            System.out.println("Is Pet Vaccinated? (true/false)");
+            boolean isVaccinated = Boolean.parseBoolean(scanner.nextLine().trim());
+            System.out.println("Please insert Pet's Owner name");
+            String ownerName = scanner.nextLine().trim();
+            petService.updatePet(id, isVaccinated, ownerName);
+            System.out.println("Pet was updated");
+        } catch (NumberFormatException e) {
+            System.err.println("Please insert a valid numeric id");
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }catch (EntityNotFoundException e){
+            System.err.println(e.getMessage());
+        } catch (EntityUpdateFailedException e){
+            System.err.println(e.getMessage());
+        } catch (Exception e ){
+            System.err.println("Internal server error");
         }
     }
 }
