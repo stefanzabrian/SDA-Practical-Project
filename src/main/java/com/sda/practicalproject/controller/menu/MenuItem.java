@@ -5,9 +5,10 @@ public enum MenuItem {
     UPDATE_VET(2, "Update Vet"),
     DELETE_VET(3, "Delete Vet"),
     VIEW_VET_LIST(4, "View Vet List"),
-    VIEW_VET_BY_ID(5, "View vet by id"),
+    VIEW_VET_BY_ID(5, "View Vet by id"),
     ADD_PET(6, "Add Pet"),
     VIEW_PET_LIST(7, "View Pet List"),
+    VIEW_PET_BY_ID(8,"View Pet by id"),
     EXIT(100, "Exit"),
     UNKNOWN(999, "Unknown option");
 
