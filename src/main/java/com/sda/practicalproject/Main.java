@@ -91,6 +91,9 @@ public class Main {
                 case CREATE_CONSULT:
                     consultController.createConsult();
                     break;
+                case VIEW_ALL_CONSULTS:
+                    consultController.viewAllConsults();
+                    break;
                 case EXIT:
                     System.out.println("Good bye!");
                     break;
