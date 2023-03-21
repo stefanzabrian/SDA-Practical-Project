@@ -1,10 +1,13 @@
 package com.sda.practicalproject;
 
+import com.sda.practicalproject.controller.ConsultController;
 import com.sda.practicalproject.controller.PetController;
 import com.sda.practicalproject.controller.VetController;
 import com.sda.practicalproject.controller.menu.MenuItem;
+import com.sda.practicalproject.repository.ConsultRepositoryImpl;
 import com.sda.practicalproject.repository.PetRepositoryImpl;
 import com.sda.practicalproject.repository.VetRepositoryImpl;
+import com.sda.practicalproject.service.ConsultServiceImpl;
 import com.sda.practicalproject.service.PetServiceImpl;
 import com.sda.practicalproject.service.VetServiceImpl;
 import com.sda.practicalproject.utils.SessionManager;
@@ -23,6 +26,14 @@ public class Main {
         );
         PetController petController = new PetController(
                 new PetServiceImpl(new PetRepositoryImpl()),
+                scanner
+        );
+        ConsultController consultController = new ConsultController(
+                new ConsultServiceImpl(
+                        new VetRepositoryImpl(),
+                        new PetRepositoryImpl(),
+                        new ConsultRepositoryImpl()
+                ),
                 scanner
         );
 
@@ -76,6 +87,9 @@ public class Main {
                     break;
                 case DELETE_PET_BY_ID:
                     petController.deletePetById();
+                    break;
+                case CREATE_CONSULT:
+                    consultController.createConsult();
                     break;
                 case EXIT:
                     System.out.println("Good bye!");

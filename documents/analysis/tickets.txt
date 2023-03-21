@@ -89,8 +89,13 @@ DONE PCM-14   - IMPLEMENT DELETE PET
 
    //////////////////////////////////////////////////////////////////////////////
 
-PCM-15   - IMPLEMENT CREATE CONSULT
-   As a user I should be able to add a new consult with the following details: vet's id, pet's id, date, description. If the creation process is successful
+DONE PCM-15   - IMPLEMENT CREATE CONSULT
+   As a user I should be able to add a new consult with the following details:
+                vet's id,
+                pet's id,
+                date,
+                description.
+          If the creation process is successful
       the system will allocate a unique id to the new consult.
           The system will validate the following data:
                   - vet's id to be not blank and not empty and to be present in the system
