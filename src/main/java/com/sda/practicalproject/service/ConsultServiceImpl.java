@@ -63,4 +63,12 @@ public class ConsultServiceImpl implements ConsultService {
     public List<Consult> getAllConsults() {
         return consultRepository.findAll();
     }
+
+    @Override
+    public Optional<Consult> getConsultById(long id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("Invalid Consult Id, value must be greater than zero");
+        }
+        return consultRepository.findById(id);
+    }
 }

@@ -1,5 +1,6 @@
 package com.sda.practicalproject.controller;
 
+import com.sda.practicalproject.model.Consult;
 import com.sda.practicalproject.repository.exception.EntityUpdateFailedException;
 import com.sda.practicalproject.service.ConsultService;
 import com.sda.practicalproject.service.exception.EntityNotFoundException;
@@ -9,10 +10,11 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ConsultController {
-    private static final  DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private final ConsultService consultService;
     private final Scanner scanner;
 
@@ -60,5 +62,25 @@ public class ConsultController {
                                 consult.getPet().getOwnerName() + " " +
                                 consult.getAppointmentDate())
                 );
+    }
+
+    public void viewConsultById() {
+        try {
+            System.out.println("Please insert Consult id");
+            long id = Long.parseLong(scanner.nextLine().trim());
+            Optional<Consult> optionalConsult = consultService.getConsultById(id);
+            if (optionalConsult.isPresent()) {
+                Consult consult = optionalConsult.get();
+                System.out.println(consult + " " + consult.getVet() + " " + consult.getPet());
+            } else {
+                System.err.println("Consult id not found");
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Please insert a number");
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Internal server error");
+        }
     }
 }
